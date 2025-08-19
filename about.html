@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Início - Nossa Equipe</title>
+    <meta name="description" content="Conheça nossa equipe e os diferentes grupos: Instrutores, Design, Trabalho Prático, Apresentação, Pesquisa e Trabalho Teórico.">
+    <style>
+        :root {
+            --primary-color: #004643;
+            --secondary-color: #abd1c6;
+            --accent-color: #f9bc60;
+            --text-light: #ffffff;
+            --text-dark: #004643;
+            --text-neutral: #666666;
+            --background-light: #ffffff;
+            --background-gray: #f8f9fa;
+            --border-color: #e5e7eb;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--background-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .header .logo {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .header .logo img {
+            max-width: 180px;
+            height: auto;
+        }
+
+        .header .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-top: 1rem;
+        }
+
+        .main-content {
+            padding: 3rem 0;
+        }
+
+        .sector-navigation {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .sector-btn {
+            padding: 12px 24px;
+            border: 2px solid var(--primary-color);
+            background-color: var(--background-light);
+            color: var(--primary-color);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .sector-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .sector-btn.active {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .sector-content {
+            display: none;
+        }
+
+        .sector-content.active {
+            display: block;
+        }
+
+        .sector-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .employees-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .employee-card {
+            background-color: var(--background-light);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .employee-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .employee-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        .employee-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .employee-role {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .employee-description {
+            color: var(--text-neutral);
+            line-height: 1.5;
+        }
+
+        .footer {
+            background-color: var(--background-gray);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .header .logo img {
+                max-width: 140px;
+            }
+
+            .sector-navigation {
+                gap: 0.5rem;
+            }
+
+            .sector-btn {
+                padding: 10px 16px;
+                font-size: 0.9rem;
+            }
+
+            .sector-title {
+                font-size: 2rem;
+            }
+
+            .employees-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="Logo da Empresa">
+            </a>
+            <p>Conheça nossa equipe excepcional e nossos diferentes grupos</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <nav class="sector-navigation">
+                <button class="sector-btn active" data-sector="instructors" data-testid="button-sector-instructors">Instrutores</button>
+                <button class="sector-btn" data-sector="design" data-testid="button-sector-design">Design</button>
+                <button class="sector-btn" data-sector="practical" data-testid="button-sector-practical">Trabalho Prático</button>
+                <button class="sector-btn" data-sector="presentation" data-testid="button-sector-presentation">Apresentação</button>
+                <button class="sector-btn" data-sector="research" data-testid="button-sector-research">Pesquisa</button>
+                <button class="sector-btn" data-sector="theoretical" data-testid="button-sector-theoretical">Trabalho Teórico</button>
+            </nav>
+
+            <!-- (resto do código segue igual, não alterei nada além da header) -->
+
+             <!-- Instructors Section -->
+            <section id="instructors" class="sector-content active" data-testid="section-instructors">
+                <h2 class="sector-title">Instrutores</h2>
+                <div class="employees-grid">
+                    <div class="employee-card" data-testid="card-employee-instructor1">
+                        <div class="employee-avatar">E</div>
+                        <h3 class="employee-name">Instrutor Evaristo</h3>
+                        <p class="employee-role">Professor</p>
+                        <p class="employee-description">Responsável pela coordenação geral das atividades acadêmicas.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-instructor2">
+                        <div class="employee-avatar">V</div>
+                        <h3 class="employee-name">Instrutor Vinicius</h3>
+                        <p class="employee-role">Professor</p>
+                        <p class="employee-description">Auxilia no desenvolvimento dos trabalhos e orientações.</p>
+                    </div>
+                    <!-- ... resto dos colaboradores ... -->
+                </div>
+            </section>
+              <!-- Design Section -->
+            <section id="design" class="sector-content" data-testid="section-design">
+                <h2 class="sector-title">Design</h2>
+                <div class="employees-grid">
+                    <div class="employee-card" data-testid="card-employee-menegucci">
+                        <div class="employee-avatar">M</div>
+                        <h3 class="employee-name">Menegucci</h3>
+                        <p class="employee-role">Dev Front-end e Designer</p>
+                        <p class="employee-description">Responsavel pela criação do site.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-richard">
+                        <div class="employee-avatar">R</div>
+                        <h3 class="employee-name">Richard</h3>
+                        <p class="employee-role">Designer</p>
+                        <p class="employee-description">Responsável pela criação de elementos visuais e identidade do projeto.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-jean">
+                        <div class="employee-avatar">J</div>
+                        <h3 class="employee-name">Jean</h3>
+                        <p class="employee-role">Designer</p>
+                        <p class="employee-description">Desenvolve conceitos visuais e materiais gráficos.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-kayky">
+                        <div class="employee-avatar">K</div>
+                        <h3 class="employee-name">Kayky</h3>
+                        <p class="employee-role">Designer</p>
+                        <p class="employee-description">Especialista em criação e desenvolvimento de layouts.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-paramos">
+                        <div class="employee-avatar">P</div>
+                        <h3 class="employee-name">Paramos</h3>
+                        <p class="employee-role">Designer</p>
+                        <p class="employee-description">Responsável pela coordenação visual e estética do projeto.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Practical Work Section -->
+            <section id="practical" class="sector-content" data-testid="section-practical">
+                <h2 class="sector-title">Trabalho Prático</h2>
+                <div class="employees-grid">
+                    <div class="employee-card" data-testid="card-employee-valdir">
+                        <div class="employee-avatar">V</div>
+                        <h3 class="employee-name">Valdir</h3>
+                        <p class="employee-role">Desenvolvedor</p>
+                        <p class="employee-description">Responsável pelo desenvolvimento prático do projeto.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-arthur">
+                        <div class="employee-avatar">A</div>
+                        <h3 class="employee-name">Arthur</h3>
+                        <p class="employee-role">Desenvolvedor</p>
+                        <p class="employee-description">Atua no desenvolvimento e implementação de funcionalidades.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-valber">
+                        <div class="employee-avatar">V</div>
+                        <h3 class="employee-name">Valber</h3>
+                        <p class="employee-role">Desenvolvedor</p>
+                        <p class="employee-description">Especialista em desenvolvimento de soluções práticas.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-erik">
+                        <div class="employee-avatar">E</div>
+                        <h3 class="employee-name">Erik</h3>
+                        <p class="employee-role">Desenvolvedor</p>
+                        <p class="employee-description">Contribui para o desenvolvimento técnico do projeto.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Presentation Section -->
+            <section id="presentation" class="sector-content" data-testid="section-presentation">
+                <h2 class="sector-title">Apresentação</h2>
+                <div class="employees-grid">
+                    <div class="employee-card" data-testid="card-employee-arthur-pres">
+                        <div class="employee-avatar">A</div>
+                        <h3 class="employee-name">Arthur</h3>
+                        <p class="employee-role">Apresentador</p>
+                        <p class="employee-description">Responsável pela apresentação do projeto.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-richard-pres">
+                        <div class="employee-avatar">R</div>
+                        <h3 class="employee-name">Richard</h3>
+                        <p class="employee-role">Apresentador</p>
+                        <p class="employee-description">Participa da apresentação do projeto.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-erik-pres">
+                        <div class="employee-avatar">E</div>
+                        <h3 class="employee-name">Erik</h3>
+                        <p class="employee-role">Apresentador</p>
+                        <p class="employee-description">Contribui para a apresentação do projeto.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-valber-pres">
+                        <div class="employee-avatar">V</div>
+                        <h3 class="employee-name">Valber</h3>
+                        <p class="employee-role">Apresentador</p>
+                        <p class="employee-description">Atua na apresentação dos resultados.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-valdir-pres">
+                        <div class="employee-avatar">V</div>
+                        <h3 class="employee-name">Valdir</h3>
+                        <p class="employee-role">Apresentador</p>
+                        <p class="employee-description">Participa da apresentação final.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-davi-pres">
+                        <div class="employee-avatar">D</div>
+                        <h3 class="employee-name">Davi</h3>
+                        <p class="employee-role">Apresentador</p>
+                        <p class="employee-description">Contribui para a apresentação do projeto.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-paramos-pres">
+                        <div class="employee-avatar">P</div>
+                        <h3 class="employee-name">Paramos</h3>
+                        <p class="employee-role">Apresentador</p>
+                        <p class="employee-description">Atua na apresentação dos resultados.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-misael-pres">
+                        <div class="employee-avatar">M</div>
+                        <h3 class="employee-name">Misael</h3>
+                        <p class="employee-role">Apresentador</p>
+                        <p class="employee-description">Participa da apresentação do projeto.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-patrick-pres">
+                        <div class="employee-avatar">P</div>
+                        <h3 class="employee-name">Patrick</h3>
+                        <p class="employee-role">Apresentador</p>
+                        <p class="employee-description">Contribui para a apresentação final.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-pedro-lucas-pres">
+                        <div class="employee-avatar">P</div>
+                        <h3 class="employee-name">Pedro Lucas</h3>
+                        <p class="employee-role">Apresentador</p>
+                        <p class="employee-description">Atua na apresentação do projeto.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Research Section -->
+            <section id="research" class="sector-content" data-testid="section-research">
+                <h2 class="sector-title">Pesquisa</h2>
+                <div class="employees-grid">
+                    <div class="employee-card" data-testid="card-employee-pesquisador1">
+                        <div class="employee-avatar">P</div>
+                        <h3 class="employee-name">Pesquisador 1</h3>
+                        <p class="employee-role">Pesquisador Principal</p>
+                        <p class="employee-description">Responsável pela coordenação das atividades de pesquisa.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-pesquisador2">
+                        <div class="employee-avatar">P</div>
+                        <h3 class="employee-name">Pesquisador 2</h3>
+                        <p class="employee-role">Pesquisador</p>
+                        <p class="employee-description">Atua na coleta e análise de dados para o projeto.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-pesquisador3">
+                        <div class="employee-avatar">P</div>
+                        <h3 class="employee-name">Pesquisador 3</h3>
+                        <p class="employee-role">Pesquisador</p>
+                        <p class="employee-description">Especialista em metodologias de pesquisa.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-pesquisador4">
+                        <div class="employee-avatar">P</div>
+                        <h3 class="employee-name">Pesquisador 4</h3>
+                        <p class="employee-role">Pesquisador</p>
+                        <p class="employee-description">Contribui para o desenvolvimento da pesquisa.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-pesquisador5">
+                        <div class="employee-avatar">P</div>
+                        <h3 class="employee-name">Pesquisador 5</h3>
+                        <p class="employee-role">Pesquisador</p>
+                        <p class="employee-description">Auxilia nas atividades de pesquisa e documentação.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Theoretical Work Section -->
+            <section id="theoretical" class="sector-content" data-testid="section-theoretical">
+                <h2 class="sector-title">Trabalho Teórico</h2>
+                <div class="employees-grid">
+                    <div class="employee-card" data-testid="card-employee-alex">
+                        <div class="employee-avatar">A</div>
+                        <h3 class="employee-name">Alex Miguel de Oliveira Fonseca</h3>
+                        <p class="employee-role">Pesquisador Teórico</p>
+                        <p class="employee-description">Responsável pelo desenvolvimento da base teórica do projeto.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-andrei">
+                        <div class="employee-avatar">A</div>
+                        <h3 class="employee-name">Andrei da Silva Raymundo</h3>
+                        <p class="employee-role">Pesquisador Teórico</p>
+                        <p class="employee-description">Contribui para a fundamentação teórica do trabalho.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-breno">
+                        <div class="employee-avatar">B</div>
+                        <h3 class="employee-name">Breno Ferrari Cabral</h3>
+                        <p class="employee-role">Pesquisador Teórico</p>
+                        <p class="employee-description">Atua no desenvolvimento conceitual do projeto.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-caio">
+                        <div class="employee-avatar">C</div>
+                        <h3 class="employee-name">Caio Nascimento</h3>
+                        <p class="employee-role">Pesquisador Teórico</p>
+                        <p class="employee-description">Especialista em análise teórica e conceitual.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-daniel">
+                        <div class="employee-avatar">D</div>
+                        <h3 class="employee-name">Daniel Vitorio Nunes Leite</h3>
+                        <p class="employee-role">Pesquisador Teórico</p>
+                        <p class="employee-description">Responsável pela elaboração de marcos teóricos.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-davi-barbosa">
+                        <div class="employee-avatar">D</div>
+                        <h3 class="employee-name">Davi Barbosa de Oliveira</h3>
+                        <p class="employee-role">Pesquisador Teórico</p>
+                        <p class="employee-description">Contribui para a fundamentação teórica.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-davi-germano">
+                        <div class="employee-avatar">D</div>
+                        <h3 class="employee-name">Davi Germano da Hora</h3>
+                        <p class="employee-role">Pesquisador Teórico</p>
+                        <p class="employee-description">Atua no desenvolvimento conceitual.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-diego">
+                        <div class="employee-avatar">D</div>
+                        <h3 class="employee-name">Diego Cardoso Silva</h3>
+                        <p class="employee-role">Pesquisador Teórico</p>
+                        <p class="employee-description">Especialista em análise teórica.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-eric">
+                        <div class="employee-avatar">E</div>
+                        <h3 class="employee-name">Eric dos Santos Costa</h3>
+                        <p class="employee-role">Pesquisador Teórico</p>
+                        <p class="employee-description">Responsável por estudos conceituais.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-guilherme">
+                        <div class="employee-avatar">G</div>
+                        <h3 class="employee-name">Guilherme Santana Pinheiro</h3>
+                        <p class="employee-role">Pesquisador Teórico</p>
+                        <p class="employee-description">Contribui para a base teórica.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-gustavo">
+                        <div class="employee-avatar">G</div>
+                        <h3 class="employee-name">Gustavo Santos Galvão</h3>
+                        <p class="employee-role">Pesquisador Teórico</p>
+                        <p class="employee-description">Atua no desenvolvimento teórico.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-lucas">
+                        <div class="employee-avatar">L</div>
+                        <h3 class="employee-name">Lucas Barauna Dias</h3>
+                        <p class="employee-role">Pesquisador Teórico</p>
+                        <p class="employee-description">Especialista em pesquisa teórica.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-luis">
+                        <div class="employee-avatar">L</div>
+                        <h3 class="employee-name">Luis Felipe Barbosa Correa</h3>
+                        <p class="employee-role">Pesquisador Teórico</p>
+                        <p class="employee-description">Responsável por análise conceitual.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-marcos">
+                        <div class="employee-avatar">M</div>
+                        <h3 class="employee-name">Marcos Daniel dos Santos Reis Ferreira</h3>
+                        <p class="employee-role">Pesquisador Teórico</p>
+                        <p class="employee-description">Contribui para estudos teóricos.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-matheus">
+                        <div class="employee-avatar">M</div>
+                        <h3 class="employee-name">Matheus Henrique Sobrinho da Silva</h3>
+                        <p class="employee-role">Pesquisador Teórico</p>
+                        <p class="employee-description">Atua no desenvolvimento conceitual.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-miguel">
+                        <div class="employee-avatar">M</div>
+                        <h3 class="employee-name">Miguel da Silva Fernandes Bessa</h3>
+                        <p class="employee-role">Pesquisador Teórico</p>
+                        <p class="employee-description">Especialista em fundamentação teórica.</p>
+                    </div>
+
+                    <div class="employee-card" data-testid="card-employee-pedro-henrique">
+                        <div class="employee-avatar">P</div>
+                        <h3 class="employee-name">Pedro Henrique dos Santos Barbosa</h3>
+                        <p class="employee-role">Pesquisador Teórico</p>
+                        <p class="employee-description">Contribui para estudos conceituais.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-pedro-lucas-teorico">
+                        <div class="employee-avatar">P</div>
+                        <h3 class="employee-name">Pedro Lucas Santos de Oliveira</h3>
+                        <p class="employee-role">Pesquisador Teórico</p>
+                        <p class="employee-description">Atua no desenvolvimento teórico.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-ryan">
+                        <div class="employee-avatar">R</div>
+                        <h3 class="employee-name">Ryan Gabriel da Conceição Joaquim</h3>
+                        <p class="employee-role">Pesquisador Teórico</p>
+                        <p class="employee-description">Especialista em pesquisa conceitual.</p>
+                    </div>
+                    <div class="employee-card" data-testid="card-employee-wanderson">
+                        <div class="employee-avatar">W</div>
+                        <h3 class="employee-name">Wanderson Vieira Pessanha</h3>
+                        <p class="employee-role">Pesquisador Teórico</p>
+                        <p class="employee-description">Responsável por fundamentação teórica.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Ethanalyzer. AMD-207 Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sector navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const sectorButtons = document.querySelectorAll('.sector-btn');
+            const sectorContents = document.querySelectorAll('.sector-content');
+
+            sectorButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetSector = this.getAttribute('data-sector');
+
+                    // Remove active class from all buttons and contents
+                    sectorButtons.forEach(btn => btn.classList.remove('active'));
+                    sectorContents.forEach(content => content.classList.remove('active'));
+
+                    // Add active class to clicked button and corresponding content
+                    this.classList.add('active');
+                    document.getElementById(targetSector).classList.add('active');
+                });
+            });
+
+            // Add smooth scroll effect when switching sections
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            // Initially hide all sections for animation
+            sectorContents.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+
+            // Show the active section immediately
+            const activeSection = document.querySelector('.sector-content.active');
+            if (activeSection) {
+                activeSection.style.opacity = '1';
+                activeSection.style.transform = 'translateY(0)';
+            }
+        });
+    </script>
+</body>
+</html>
